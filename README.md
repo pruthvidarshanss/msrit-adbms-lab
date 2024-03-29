@@ -8,4 +8,8 @@ Draw ER/EER diagram for the record company requirement.
 
 # [`Program 3`](p3.md)
 
-Draw ER diagram for the Movies information adn execute SQL queries.
+Draw ER diagram for the Movies information and execute SQL queries.
+
+# [`Program 4`](p4.md)
+
+Result for COMPANY database queries.

@@ -1,71 +1,110 @@
-# `QB Program 2`
+# `QB Program 3`
 
-[A] The production company is organized into different studios. We store each studio’s name branch and location; every studio must own at least one movie. We store each movie’s title, sensor_number and year of production. Star may act in any number of movies and we store each actors name and address.
+[A] The production company is organized into different studios. We store each studio’s name branch and location; a studio own any number of Cartoon-serials. We store each Cartoon-Serial’s title, sensor_number and year of production. Star may do voices in any number of Cartoon-Serials and we store each actors name and address. 
 
-```SQL
-CREATE TABLE STUDIO (
-  STUDIO_ID INT PRIMARY KEY, 
-  NAME VARCHAR(50), 
-  BRANCH VARCHAR(50), 
-  LOCATION VARCHAR(50)
+```sql
+CREATE TABLE STUDIOS (
+    STUDIO_ID INT PRIMARY KEY,
+    NAME VARCHAR(255),
+    BRANCH VARCHAR(255),
+    LOCATION VARCHAR(255)
 );
 
-INSERT INTO STUDIO (STUDIO_ID, NAME, BRANCH, LOCATION) VALUES (1, "Hombale", "Hebbal", "Bengaluru"), (2, "Marvel", "Chicago", "USA"), (3, "DC", "London", "UK");
+INSERT INTO STUDIOS (STUDIO_ID, NAME, BRANCH, LOCATION) VALUES
+(1, 'CN', 'London', 'UK'),
+(2, 'POGO', 'Ohio', 'USA'),
+(3, 'Hungama', 'Mumbai', 'India'),
+(4, 'Disney', 'Bengaluru', 'India');
 
 
-CREATE TABLE MOVIE (
-  MOVIE_ID INT PRIMARY KEY, 
-  TITLE VARCHAR(50), 
-  SENSOR_NO INT, 
-  YEAR_OF_PRODUCTION INT, 
-  STUDIO_ID INT, 
-  FOREIGN KEY (STUDIO_ID) REFERENCES STUDIO(STUDIO_ID)
+CREATE TABLE CARTOON_SERIALS (
+    CARTOON_SERIAL_ID INT PRIMARY KEY,
+    TITLE VARCHAR(255),
+    SENSOR_NO INT,
+    YEAR INT,
+    STUDIO_ID INT,
+    FOREIGN KEY (STUDIO_ID) REFERENCES STUDIOS(STUDIO_ID)
 );
 
-INSERT INTO MOVIE (MOVIE_ID, TITLE, SENSOR_NO, YEAR_OF_PRODUCTION, STUDIO_ID) VALUES (1, "Kantara", 101, 2023, 1), (2, "Deadpool 3", 201, 2024, 2);
+INSERT INTO CARTOON_SERIALS (CARTOON_SERIAL_ID, TITLE, SENSOR_NO, YEAR, STUDIO_ID) VALUES
+(1, 'Tom and Jerry', 101, 2000, 1),
+(2, 'SpongeBob SquarePants', 102, 2005, 2),
+(3, 'ShinChan', 103, 2001, 3),
+(4, 'Doraemon', 104, 2002, 4);
 
 
-CREATE TABLE ACTORS (ACTOR_ID INT PRIMARY KEY, NAME VARCHAR(50), ADDRESS VARCHAR(100));
+CREATE TABLE ACTORS (
+    ACTOR_ID INT PRIMARY KEY,
+    NAME VARCHAR(255),
+    ADDRESS VARCHAR(255)
+);
 
-INSERT INTO ACTORS (ACTOR_ID, NAME, ADDRESS) VALUES (1, "Rishab Shetty", "Bengaluru"), (2, "Saptami Gowda", "Bengaluru"), (3, "Ryan Renolds", "San Andreas");
+INSERT INTO ACTORS (ACTOR_ID, NAME, ADDRESS) VALUES
+(201, 'Richard Kind', 'UK'),
+(202, 'Jennifer', 'USA'),
+(203, 'Nora', 'USA'),
+(204, 'Yashoda', 'India'),
+(205, 'Yash', 'India'),
+(206, 'John', 'UK');
 
-CREATE TABLE MOVIE_ACTORS (ID INT AUTO_INCREMENT PRIMARY KEY, ACTOR_ID INT, MOVIE_ID INT, FOREIGN KEY (ACTOR_ID) REFERENCES ACTORS(ACTOR_ID), FOREIGN KEY (MOVIE_ID) REFERENCES MOVIE(MOVIE_ID));
 
-INSERT INTO MOVIE_ACTORS (ACTOR_ID, MOVIE_ID) VALUES (1, 1), (2, 1), (3, 2);
+CREATE TABLE CARTOON_ACTORS (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    CARTOON_SERIAL_ID INT,
+    ACTOR_ID INT,
+    FOREIGN KEY (CARTOON_SERIAL_ID) REFERENCES CARTOON_SERIALS(CARTOON_SERIAL_ID),
+    FOREIGN KEY (ACTOR_ID) REFERENCES ACTORS(ACTOR_ID)
+);
+
+INSERT INTO CARTOON_ACTORS (CARTOON_SERIAL_ID, ACTOR_ID) VALUES
+(1, 201),
+(1, 203),
+(2, 204),
+(3, 202),
+(3, 205),
+(4, 206);
 ```
 
-
-* List all the studios of the movie “Kantara”;
+* Find total no of actors, do voiced in a Cartoon-Serials ‘Tom and Jerry’
 ```SQL
-SELECT s.NAME, s.BRANCH, s.LOCATION FROM STUDIO s, MOVIE m WHERE s.STUDIO_ID = m.STUDIO_ID AND m.TITLE = "Kantara";
+SELECT COUNT(*) AS total_actors
+FROM ACTORS a
+JOIN CARTOON_ACTORS ca ON a.ACTOR_ID = ca.ACTOR_ID
+JOIN CARTOON_SERIALS cs ON ca.CARTOON_SERIAL_ID = cs.CARTOON_SERIAL_ID
+WHERE cs.TITLE = 'Tom and Jerry';
 ```
 
-| Name | Branch | Location |
-|---|---|---|
-| Hombale | Hebbal | Bengaluru |
-
-* List all the actors , acted in a movie ‘Kantara’
-```SQL
-SELECT a.NAME FROM ACTORS a JOIN MOVIE_ACTORS ma ON ma.ACTOR_ID = a.ACTOR_ID JOIN MOVIE m ON ma.MOVIE_ID = m.MOVIE_ID WHERE m.TITLE = "Kantara";
-```
-
-|NAME|	
+|total_actors|
 |---|
-|Rishab Shetty|
-|Saptami Gowda|
+|2|
 
-* Write a deletion trigger, does not allow to deleting current year movies
+* Retrieve name of studio, location and Cartoon-Serials title in which star “Richard Kind” is voiced.
+```SQL
+SELECT s.NAME AS STUDIO_NAME, s.LOCATION, cs.TITLE AS CARTOON_SERIAL_TITLE
+FROM STUDIOS s
+JOIN CARTOON_SERIALS cs ON s.STUDIO_ID = cs.STUDIO_ID
+JOIN CARTOON_ACTORS csa ON cs.CARTOON_SERIAL_ID = csa.CARTOON_SERIAL_ID
+JOIN ACTORS a ON csa.ACTOR_ID = a.ACTOR_ID
+WHERE a.NAME = 'Richard Kind';
+```
+
+| STUDIO_NAME | LOCATION | CARTOON_SERIAL_TITLE |
+|---|---|---|
+|CN|UK|Tom and Jerry|
+
+
+* Write a deletion trigger, does not allow to deleting current year Cartoon-Serials.
 ```SQL
 DELIMITER //
-CREATE TRIGGER not_delete_current_year_movie
-BEFORE DELETE ON MOVIE
+CREATE TRIGGER prevent_delete_current_year_cartoon_serials
+BEFORE DELETE ON CARTOON_SERIALS
 FOR EACH ROW
 BEGIN
     DECLARE current_year INT;
     SET current_year = YEAR(CURDATE());
-    IF OLD.YEAR_OF_PRODUCTION = current_year THEN
+    IF OLD.YEAR = current_year THEN
         SIGNAL SQLSTATE '45000' 
-        SET MESSAGE_TEXT = 'Cannot delete movies from the current year.';
+        SET MESSAGE_TEXT = 'Cannot delete Cartoon-Serials from the current year.';
     END IF;
 END;
 //
@@ -73,11 +112,11 @@ DELIMITER ;
 ```
 
 ```SQL
-CREATE TRIGGER not_delete_current_year_movie BEFORE DELETE ON MOVIE FOR EACH ROW BEGIN DECLARE current_year INT; SET current_year = YEAR(CURDATE()); IF OLD.YEAR_OF_PRODUCTION = current_year THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cannot delete Cartoon-Serials from the current year.'; END IF; END;;
+CREATE TRIGGER prevent_delete_current_year_cartoon_serials BEFORE DELETE ON CARTOON_SERIALS FOR EACH ROW BEGIN DECLARE current_year INT; SET current_year = YEAR(CURDATE()); IF OLD.YEAR = current_year THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Cannot delete Cartoon-Serials from the current year.'; END IF; END;;
 ```
 
 
-[B] Consider the following restaurant table with the following attributes - Name, address –(building, street, area, pincode), id, cuisine, nearby landmarks, online delivery-(yes/no), famousfor(name of the dish) Create 10 collections with data relevant to the following questions. Write and execute MongoDB queries:
+[B] Consider the following restaurant table with the following attributes - Name, address –(building, street, area, pincode), id, cuisine, nearby landmarks, online delivery-(yes/no), famous for(name of the dish) Create 10 collections with data relevant to the following questions. Write and execute MongoDB queries:
 
 ```js
 db.restaurants.insertMany([
@@ -214,7 +253,7 @@ db.restaurants.insertMany([
 ]);
 ```
 
-* List the name, address and nearby landmarks of all restaurants in Bangalore where north Indian thali is available
+* List the name, address and nearby landmarks of all restaurants in Bangalore where north Indian thali is available.
 ```js
 db.restaurants.find(
 	{ "Address.area": "Bengaluru", "FamousForDish": "NorthIndian Thali" },
@@ -222,10 +261,10 @@ db.restaurants.find(
 );
 ```
 
-* List the name and address of restaurants and also the dish the restaurant is famous for, in Bangalore.
+* List the name and address of restaurants and also the dish the restaurant is famous for, in Bangalore where online delivery is available
 ```js
 db.restaurants.find(
-	{ "Address.area": "Bengaluru" },
+	{ "Address.area": "Bengaluru", "OnlineDelivery": true },
 	{ "Name": 1, "Address": 1, "FamousForDish": 1, "_id": 0 }
 );
 ```

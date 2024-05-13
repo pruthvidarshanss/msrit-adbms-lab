@@ -34,7 +34,7 @@ Result for COMPANY database queries.
 
 [A] The production company is organized into different studios. We store each studio’s name branch and location; every studio must own at least one movie. We store each movie’s title, sensor_number and year of production. Star may act in any number of movies and we store each actors name and address.
 
-* List all the studios of the movie “Kantara”;
+* List all the studios of the movie “Kantara”
 * List all the actors , acted in a movie ‘Kantara’
 * Write a deletion trigger, does not allow to deleting current year movies
 
@@ -42,3 +42,18 @@ Result for COMPANY database queries.
 
 * List the name, address and nearby landmarks of all restaurants in Bangalore where north Indian thali is available
 * List the name and address of restaurants and also the dish the restaurant is famous for, in Bangalore.
+
+
+# [`Program 3`](qbp3.md)
+
+[A] The production company is organized into different studios. We store each studio’s name branch and location; a studio own any number of Cartoon-serials. We store each Cartoon-Serial’s title, sensor_number and year of production. Star may do voices in any number of Cartoon-Serials and we store each actors name and address. 
+
+* Find total no of actors, do voiced in a Cartoon-Serials ‘Tom and Jerry’
+* Retrieve name of studio, location and Cartoon-Serials title in which star “Richard Kind” is voiced.
+* Write a deletion trigger, does not allow to deleting current year Cartoon-Serials.
+
+[B] Consider the following restaurant table with the following attributes - Name, address –(building, street, area, pincode), id, cuisine, nearby landmarks, online delivery-(yes/no), famous for(name of the dish) Create 10 collections with data relevant to the following questions. Write and execute MongoDB queries:
+
+* List the name, address and nearby landmarks of all restaurants in Bangalore where north Indian thali is available.
+* List the name and address of restaurants and also the dish the restaurant is famous for, in Bangalore where online delivery is available.
+

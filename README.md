@@ -57,3 +57,17 @@ Result for COMPANY database queries.
 * List the name, address and nearby landmarks of all restaurants in Bangalore where north Indian thali is available.
 * List the name and address of restaurants and also the dish the restaurant is famous for, in Bangalore where online delivery is available.
 
+
+# [`Program 4`](qbp4.md)
+
+[A] Car marketing company wants keep track of marketed cars and their owner. Each car must be associated with a single owner and owner may have any number of cars. We store car’s registration number, model & color and owner’s name, address & SSN. We also store date of purchase of each car.
+
+* Find a person who owns highest number of cars
+* Retrieve persons and cars information purchased on the day 03-03-2023
+* Write a insertion trigger to check date of purchase must be less than current date (must use system date)
+
+
+[B] Consider the following Tourist places table with the following attributes - Place, address – (state), id, tourist attractions, best time of the year to visit, modes of transport(include nearest airport, railway station etc), accommodation, food - what not to miss for sure Create 10 collections with data relevant to the following questions. Write and execute MongoDB queries:
+
+* List all the tourist places of Karnataka
+* List the tourist attractions of Kerala. Exclude accommodation and food

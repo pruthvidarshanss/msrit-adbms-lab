@@ -234,6 +234,20 @@ db.restaurants.find(
 );
 ```
 
+```
+[
+  {
+    Name: 'Mama Mia Pizzeria',
+    Address: {
+      building: '2223',
+      street: 'Jayanagar 4th Block',
+      area: 'Bengaluru',
+      pincode: '560041'
+    }
+  }
+]
+```
+
 * List the name, address and nearby landmarks of all restaurants in Bangalore where north Indianthali is available.
 
 ```js
@@ -241,4 +255,19 @@ db.restaurants.find(
 	{ "Address.area": "Bengaluru", "FamousForDish": "NorthIndian Thali" },
 	{ "Name": 1, "Address": 1, "NearbyLandmarks": 1, "_id": 0 }
 );
+```
+
+```
+[
+  {
+    Name: 'Pind Punjab',
+    Address: {
+      building: '2425',
+      street: 'Bannerghatta Main Road',
+      area: 'Bengaluru',
+      pincode: '560076'
+    },
+    NearbyLandmarks: [ 'IIM Bangalore', 'Meenakshi Mall' ]
+  }
+]
 ```

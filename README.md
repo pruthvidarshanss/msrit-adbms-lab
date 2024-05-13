@@ -71,3 +71,18 @@ Result for COMPANY database queries.
 
 * List all the tourist places of Karnataka
 * List the tourist attractions of Kerala. Exclude accommodation and food
+
+
+# [`Program 5`](qbp5.md)
+
+[A] Puppy pet shop wants to keep track of dogs and their owners. The person can buy maximum three pet dogs. We store person’s name, SSN and address and dog’s name, date of purchase and sex. The owner of the pet dogs will be identified by SSN since the dog’s names are not distinct.
+
+* List all pets owned by a person ‘Ramesh’.
+* List all persons who are not owned a single pet
+* Write a trigger to check the constraint that the person can buy maximum three pet dogs
+
+
+[B] Consider the following Tourist places table with the following attributes - Place, address –(state, id), tourist attractions,best time of the year to visit,modes of transport(include nearest airport, railway station etc), accommodation, food - what not to miss for sureCreate 10 collections with data relevant to the following questions. Write and execute MongoDB queries:
+
+* List the tourist attractions of Kerala. Exclude accommodation and food.
+* List the places sorted state wise

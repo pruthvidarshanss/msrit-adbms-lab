@@ -222,10 +222,50 @@ db.restaurants.find(
 );
 ```
 
+```
+[
+  {
+    Name: 'Pind Punjab',
+    Address: {
+      building: '2425',
+      street: 'Bannerghatta Main Road',
+      area: 'Bengaluru',
+      pincode: '560076'
+    },
+    NearbyLandmarks: [ 'IIM Bangalore', 'Meenakshi Mall' ]
+  }
+]
+```
+
 * List the name and address of restaurants and also the dish the restaurant is famous for, in Bangalore.
 ```js
 db.restaurants.find(
 	{ "Address.area": "Bengaluru" },
 	{ "Name": 1, "Address": 1, "FamousForDish": 1, "_id": 0 }
 );
+```
+
+```
+[
+  {
+    Name: 'Mama Mia Pizzeria',
+    Address: {
+      building: '2223',
+      street: 'Jayanagar 4th Block',
+      area: 'Bengaluru',
+      pincode: '560041'
+    },
+    FamousForDish: 'Neapolitan Pizza'
+  },
+  {
+    Name: 'Pind Punjab',
+    Address: {
+      building: '2425',
+      street: 'Bannerghatta Main Road',
+      area: 'Bengaluru',
+      pincode: '560076'
+    },
+    FamousForDish: 'NorthIndian Thali'
+  }
+]
 ```

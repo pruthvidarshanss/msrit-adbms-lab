@@ -193,13 +193,138 @@ db.tourists_places.insertMany([
 
 * List all the tourist places of Karnataka
 ```js
-db.tourist_places.find({ address: "Karnataka" });
+db.tourists_places.find({ address: "Karnataka" });
+```
+
+```
+[
+  {
+    _id: ObjectId('66423f5b7c30af2bf69f9914'),
+    Place: 'Bangalore Palace',
+    address: 'Karnataka',
+    id: 1,
+    tourist_attractions: [ 'Bangalore Palace', 'Cubbon Park', 'Lalbagh Botanical Garden' ],
+    best_time_to_visit: 'October to February',
+    modes_of_transport: [
+      'Kempegowda International Airport',
+      'Bangalore City Railway Station'
+    ],
+    accommodation: 'Hotels and resorts',
+    food: 'Masala Dosa and Filter Coffee'
+  },
+  {
+    _id: ObjectId('66423f5b7c30af2bf69f9915'),
+    Place: 'ISKCON Temple Bangalore',
+    address: 'Karnataka',
+    id: 2,
+    tourist_attractions: [ 'ISKCON Temple', 'Vidhana Soudha', 'Wonderla Amusement Park' ],
+    best_time_to_visit: 'Throughout the year',
+    modes_of_transport: [
+      'Kempegowda International Airport',
+      'Bangalore City Railway Station'
+    ],
+    accommodation: 'Hotels and lodges',
+    food: 'Chaat and South Indian Thali'
+  },
+  {
+    _id: ObjectId('66423f5b7c30af2bf69f9916'),
+    Place: 'Bannerghatta National Park',
+    address: 'Karnataka',
+    id: 3,
+    tourist_attractions: [
+      'Bannerghatta National Park',
+      'Wonderla Amusement Park',
+      'Art of Living International Center'
+    ],
+    best_time_to_visit: 'October to March',
+    modes_of_transport: [
+      'Kempegowda International Airport',
+      'Bangalore City Railway Station'
+    ],
+    accommodation: 'Resorts and guesthouses',
+    food: 'Bisi Bele Bath and Ragi Mudde'
+  },
+  {
+    _id: ObjectId('66423f5b7c30af2bf69f9917'),
+    Place: 'Ulsoor Lake',
+    address: 'Karnataka',
+    id: 4,
+    tourist_attractions: [ 'Ulsoor Lake', 'Commercial Street', 'MG Road' ],
+    best_time_to_visit: 'Throughout the year',
+    modes_of_transport: [
+      'Kempegowda International Airport',
+      'Bangalore City Railway Station'
+    ],
+    accommodation: 'Hotels and budget stays',
+    food: 'Pani Puri and Biryani'
+  },
+  {
+    _id: ObjectId('66423f5b7c30af2bf69f9918'),
+    Place: 'Nandi Hills',
+    address: 'Karnataka',
+    id: 5,
+    tourist_attractions: [ 'Nandi Hills', "Tipu Sultan's Summer Palace", 'Lumbini Gardens' ],
+    best_time_to_visit: 'September to May',
+    modes_of_transport: [
+      'Kempegowda International Airport',
+      'Bangalore City Railway Station'
+    ],
+    accommodation: 'Resorts and cottages',
+    food: 'Thatte Idli and Mysore Pak'
+  }
+]
 ```
 
 * List the tourist attractions of Kerala. Exclude accommodation and food
 ```js
-db.kerala_tourist_places.find(
+db.tourists_places.find(
   { address: "Kerala" },
   { Place: 1, tourist_attractions: 1, best_time_to_visit:1, modes_of_transport:1,  _id: 0 }
 );
+```
+
+```
+[
+  {
+    Place: 'Kovalam',
+    tourist_attractions: [ 'Kovalam Beach', 'Lighthouse Beach', 'Vellayani Lake' ],
+    best_time_to_visit: 'September to March',
+    modes_of_transport: [
+      'Trivandrum International Airport',
+      'Thiruvananthapuram Railway Station'
+    ]
+  },
+  {
+    Place: 'Varkala',
+    tourist_attractions: [ 'Varkala Beach', 'Janardanaswamy Temple', 'Varkala Cliff' ],
+    best_time_to_visit: 'September to March',
+    modes_of_transport: [ 'Trivandrum International Airport', 'Varkala Railway Station' ]
+  },
+  {
+    Place: 'Kumarakom',
+    tourist_attractions: [
+      'Kumarakom Bird Sanctuary',
+      'Kumarakom Backwaters',
+      'Pathiramanal Island'
+    ],
+    best_time_to_visit: 'September to March',
+    modes_of_transport: [ 'Cochin International Airport', 'Kottayam Railway Station' ]
+  },
+  {
+    Place: 'Palakkad',
+    tourist_attractions: [
+      'Palakkad Fort',
+      'Malampuzha Dam',
+      'Silent Valley National Park'
+    ],
+    best_time_to_visit: 'November to February',
+    modes_of_transport: [ 'Coimbatore International Airport', 'Palakkad Railway Station' ]
+  },
+  {
+    Place: 'Kozhikode',
+    tourist_attractions: [ 'Kozhikode Beach', 'Beypore Beach', 'Mananchira Square' ],
+    best_time_to_visit: 'September to May',
+    modes_of_transport: [ 'Calicut International Airport', 'Kozhikode Railway Station' ]
+  }
+]
 ```

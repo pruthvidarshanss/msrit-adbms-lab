@@ -88,7 +88,7 @@ Result for COMPANY database queries.
 * List the places sorted state wise
 
 
-# [`Program 6`]()
+# [`Program 6`](qbp6.md)
 
 [A] Education institute is managing the on line course enrollment system. Students can enroll maximum of six courses of their choice and a maximum student to be enrolled to any course is 60. We store student details like name, USN, semester and several addresses, course details like unique title, unique id and credits.
 
@@ -103,7 +103,7 @@ Result for COMPANY database queries.
 * List the places sorted state wise
 
 
-# [`Program 7`]()
+# [`Program 7`](qbp7.md)
 
 [A] The Sapna Book shop wants keep track of orders of the book. The book is composed of unique id, title, year of publication, single author and single publisher. Each order will be uniquely identified by order-id and may have any number of books. We keep track of quantity of each book ordered. We store the following details for author and publisher.
     a. AUTHOR: unique author-id, name, city, country
@@ -121,7 +121,7 @@ to the following questions. Write and execute MongoDB queries:
 * List only the actors names and type of the movie directed by Ram
 
 
-# [`Program 8`]()
+# [`Program 8`](qbp8.md)
 
 [A] The commercial bank wants keep track of the customer’s account information. The each customer may have any number of accounts and account can be shared by any number of customers. The system will keep track of the date of last transaction. We store the following details.
     a. Account: unique account-number, type and balance
@@ -138,7 +138,7 @@ to the following questions. Write and execute MongoDB queries:
 * List only the name and type of the movie where Ram has acted sorted by movie names
 
 
-# [`Program 9`]()
+# [`Program 9`](qbp9.md)
 
 [A] Consider a database system for a baseball organization such as the major leagues. The data requirements are summarized as follows: Design an Enhanced Entity-Relationship diagram for the BASEBALL database. and build the design using a data modeling tool such as ERwin ,Rational Rose or erdplus. 
 
@@ -159,7 +159,7 @@ to the following questions. Write and execute MongoDB queries:
 * List only the name and type of the movie where Ram has acted, sorted by movie names.
 
 
-# [`Program 10`]()
+# [`Program 10`](qbp10.md)
 
 [A] Consider an ONLINE_AUCTION database system in which members (buyers and sellers) participate in the sale of items. The data requirements for this system are summarized as follows: Design an Enhanced Entity-Relationship diagram for the ONLINE_AUCTION database and build the design using a data modeling tool such as ERwin ,Rational Rose or erdplus.
 
@@ -171,7 +171,7 @@ to the following questions. Write and execute MongoDB queries:
 * The buyer and seller may record feedback regarding their completed transactions. Feedback contains a rating of the other party participating in the transaction (1–10) and a comment.
 
 
-[B] Consider the following Movie table with the following attributes - Actor_name,Actor_id, Actor_birthdate , Dirctor_name,Director_id, Director_birthdate, film_title, year of production ,type (thriller, comedy, etc.) Create 10 collections with data relevant to the following questions. Write and execute MongoDB queries:
+[B] Consider the following Movie table with the following attributes - Actor_name,Actor_id, Actor_birthdate , Dirctor_name,Director_id, Director_birthdate, film_title, year of production, type (thriller, comedy, etc.) Create 10 collections with data relevant to the following questions. Write and execute MongoDB queries:
 
 * List all the movies acted by John in the year 2018
 * List only the actors names and type of the movie directed by Ram

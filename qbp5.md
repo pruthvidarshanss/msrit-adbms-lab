@@ -194,7 +194,7 @@ db.tourists_places.insertMany([
 ```js
 db.tourists_places.find(
   { address: "Kerala" },
-  { Place: 1, tourist_attractions: 1, best_time_to_visit:1, modes_of_transport:1,  _id: 0 }
+  { accommodation: 0, food: 0,  _id: 0 }
 );
 ```
 
